@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:52:05 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/08 15:50:50 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/08 20:39:14 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,6 @@ static	int	opperations_list(t_lst **la, t_lst **lb, char *l)
 	return (1);
 }
 
-static	int	check_sort(t_lst **la, t_lst **lb)
-{
-	t_lst	*tmp;
-
-	if (*lb)
-		return (1);
-	tmp = *la;
-	while (tmp)
-	{
-		if (tmp->next)
-		{
-			if (tmp->nb > tmp->next->nb)
-				return (1);
-		}
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
 static	int	algo_checker(t_lst *la, t_lst *lb, t_info *info)
 {
 	char	*l;
@@ -89,15 +70,15 @@ static	int	algo_checker(t_lst *la, t_lst *lb, t_info *info)
 			opperations_list(&la, &lb, l);
 			if (info->flag_v)
 			{
-				ft_dprintf(1, "\nl1 = \n");
+				ft_dprintf(1, "\nl1 : ");
 				print_lst(la);
-				ft_dprintf(1, "\nl2 = \n\n");
+				ft_dprintf(1, "\nl2 : \n\n");
 				print_lst(lb);
 			}
 		}
 		ft_strdel(&l);
 	}
-	if (!check_sort(&la, &lb))
+	if (!check_sort(la, lb))
 		ft_dprintf(1, "OK\n");
 	else
 		ft_dprintf(1, "KO\n");
@@ -122,9 +103,9 @@ int			main(int ac, char **av)
 	lb = NULL;
 	if (info.flag_v)
 	{
-		ft_dprintf(1, "l1 = \n");
+		ft_dprintf(1, "l1 : ");
 		print_lst(la);
-		ft_dprintf(1, "\nl2 = \n\n");
+		ft_dprintf(1, "\nl2 : \n\n");
 		print_lst(lb);
 	}
 	if (!algo_checker(la, lb, &info))

@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/08 15:50:48 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/08 20:39:15 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ t_lst				*create_lst(int ac, char **av);
 t_lst				*new_maillon(long long nb);
 t_lst				*last_elem(t_lst *la);
 void				print_lst(t_lst *la);
+int					check_sort(t_lst *la, t_lst *lb);
 
 #endif
