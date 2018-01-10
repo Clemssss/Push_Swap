@@ -6,11 +6,22 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 16:14:13 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/08 20:39:13 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/10 22:06:32 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	aff_and_op(int (*f)(t_lst **),
+		int (*f2)(t_lst **, t_lst **), char *aff, t_lst **la, t_lst **lb)
+{
+	if (f)
+		f(la);
+	else if (f2)
+		f2(la, lb);
+	if (aff)
+		ft_dprintf(1, "%s\n\n", aff);
+}
 
 int	op_swap(t_lst **la)
 {
@@ -59,7 +70,7 @@ int	op_rev_rotate(t_lst **la)
 {
 	t_lst	*tmp;
 	t_lst	*tmp2;
-	
+
 	if (*la)
 	{
 		tmp = *la;

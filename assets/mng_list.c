@@ -6,11 +6,28 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:48:00 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/08 20:39:14 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/10 21:59:38 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int		size_lst(t_lst *la)
+{
+	int		i;
+	t_lst	*tmp;
+
+	i = 0;
+	if (!la)
+		return (0);
+	tmp = la;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
 
 void	print_lst(t_lst *la)
 {

@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/08 20:39:15 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/10 23:03:18 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,12 @@ t_lst				*new_maillon(long long nb);
 t_lst				*last_elem(t_lst *la);
 void				print_lst(t_lst *la);
 int					check_sort(t_lst *la, t_lst *lb);
+int					algo_inf_7(t_lst **a_pile, t_lst **b_pile, t_info *info);
+int					algo_push_swap(t_lst **a_pile,
+		t_lst **b_pile, t_info *info, t_lst *cpy);
+void				aff_and_op(int (*f)(t_lst **),
+				int (*f2)(t_lst **, t_lst **), char *aff,
+				t_lst **la, t_lst **lb);
+int					size_lst(t_lst *la);
 
 #endif

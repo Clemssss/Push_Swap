@@ -6,13 +6,15 @@
 #    By: clegirar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/05 14:46:55 by clegirar          #+#    #+#              #
-#    Updated: 2018/01/08 20:39:16 by clegirar         ###   ########.fr        #
+#    Updated: 2018/01/10 22:47:47 by clegirar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	../push_swap
 
 SRCS	=	./srcs/main.c				\
+			./srcs/algo_inf_7.c			\
+			./srcs/algo.c				\
 			../assets/opperations.c		\
 			../assets/create_list.c		\
 			../assets/mng_list.c		\
