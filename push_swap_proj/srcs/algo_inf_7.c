@@ -6,76 +6,59 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 22:01:43 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/10 22:41:35 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/11 20:27:34 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	int		better_push(t_lst *a_pile, t_lst *b_pile)
+static	int		push_in_a(t_info *info)
 {
-	t_lst	*tmp;
-
-	if (a_pile->next)
-		tmp = a_pile->next;
-	if (a_pile && a_pile->nb == b_pile->nb + 1)
-		return (1);
-	while (tmp)
+	if (info->la && info->la->next && info->la->nb > info->la->next->nb
+			&& info->la->nb > info->last->nb)
 	{
-		if (tmp->nb < a_pile->nb && tmp->nb > b_pile->nb)
-			return (0);
-		tmp = tmp->next;
+		if (info->la && info->lb && info->la->nb > info->lb->nb
+				&& better_push(info->la, info->lb))
+			opperations_list(&(info->la), &(info->lb), "pa", info);
+		if (info->lb && info->lb->next && info->lb->nb < info->lb->next->nb)
+			opperations_list(&(info->la), &(info->lb), "rr", info);
+		else
+			opperations_list(&(info->la), &(info->lb), "ra", info);
+		return (1);
 	}
+	else if (info->la && info->la->next && info->la->nb > info->la->next->nb
+			&& info->la->nb < info->last->nb)
+	{
+		opperations_list(&(info->la), &(info->lb), "sa", info);
+		return (1);
+	}
+	return (0);
+}
+
+static	int		push_in_b(t_info *info)
+{
+	if (check_sort(info->la, NULL)
+			&& info->la->nb < info->la->next->nb && info->la->nb < info->last->nb)
+	{
+		opperations_list(&(info->la), &(info->lb), "pb", info);
+		if (info->lb && info->lb->next && info->lb->nb < info->lb->next->nb)
+			opperations_list(&(info->la), &(info->lb), "rb", info);
+	}
+	else if (better_push(info->la, info->lb))
+		opperations_list(&(info->la), &(info->lb), "pa", info);
+	else
+		opperations_list(&(info->la), &(info->lb), "ra", info);
 	return (1);
 }
 
-int		algo_inf_7(t_lst **la, t_lst **lb, t_info *info)
+int				algo_inf_7(t_info *info)
 {
-	t_lst	*last;
-	int		i;
-
-	i = 0;
-	while (check_sort(*la, *lb))
+	while (check_sort(info->la, info->lb))
 	{
-		last = last_elem(*la);
-		if ((*la) && (*la)->next
-				&& (*la)->nb > (*la)->next->nb && (*la)->nb > last->nb)
-		{
-			if ((*la) && (*lb) && (*la)->nb > (*lb)->nb
-					&& better_push(*la, *lb))
-				aff_and_op(NULL, &op_push, "pa", lb , la);
-			if ((*lb) && (*lb)->next && (*lb)->nb < (*lb)->next->nb)
-			{
-				aff_and_op(&op_rotate, NULL, NULL, la, NULL);
-				aff_and_op(&op_rotate, NULL, "rr", lb, NULL);
-			}
-			else
-				aff_and_op(&op_rotate, NULL, "ra", la, NULL);
-		}
-		else if ((*la) && (*la)->next
-				&& (*la)->nb > (*la)->next->nb && (*la)->nb < last->nb)
-			aff_and_op(&op_swap, NULL, "sa", la, NULL);
-		else if (check_sort(*la, NULL)
-				&& (*la)->nb < (*la)->next->nb && (*la)->nb < last->nb)
-		{
-			aff_and_op(NULL, &op_push, "pb", la, lb);
-			if ((*lb) && (*lb)->next && (*lb)->nb < (*lb)->next->nb)
-				aff_and_op(&op_rotate, NULL, "rb", lb, NULL);
-		}
-		else if (better_push(*la, *lb))
-			aff_and_op(NULL, &op_push, "pa", lb, la);
-		else
-			aff_and_op(&op_rotate, NULL, "ra", la, NULL);
-		if (info->flag_v)
-		{
-			ft_dprintf(1, "l1 : ");
-			print_lst(*la);
-			ft_dprintf(1, "\nl2 : ");
-			print_lst(*lb);
-			ft_dprintf(1, "\n");
-			i++;
-			ft_dprintf(1, "COUP = %d\n\n", i);
-		}
+		info->last = last_elem(info->la);
+		if (!push_in_a(info))
+			push_in_b(info);
 	}
+	print_piles(info->la, info->lb);
 	return (1);
 }

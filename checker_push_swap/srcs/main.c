@@ -6,49 +6,13 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:52:05 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/08 20:39:14 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/11 19:41:28 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	int	opperations_list(t_lst **la, t_lst **lb, char *l)
-{
-	if (!ft_strcmp(l, "sa"))
-		return (op_swap(la));
-	else if (!ft_strcmp(l, "sb"))
-		return (op_swap(lb));
-	else if (!ft_strcmp(l, "ss"))
-	{
-		op_swap(la);
-		return (op_swap(lb));
-	}
-	else if (!ft_strcmp(l, "pa"))
-		return (op_push(lb, la));
-	else if (!ft_strcmp(l, "pb"))
-		return (op_push(la, lb));
-	else if (!ft_strcmp(l, "ra"))
-		return (op_rotate(la));
-	else if (!ft_strcmp(l, "rb"))
-		return (op_rotate(lb));
-	else if (!ft_strcmp(l, "rr"))
-	{
-		op_rotate(la);
-		return (op_rotate(lb));
-	}
-	else if (!ft_strcmp(l, "rra"))
-		return (op_rev_rotate(la));
-	else if (!ft_strcmp(l, "rrb"))
-		return (op_rev_rotate(lb));
-	else if (!ft_strcmp(l, "rrr"))
-	{
-		op_rev_rotate(la);
-		return (op_rev_rotate(lb));
-	}
-	return (1);
-}
-
-static	int	algo_checker(t_lst *la, t_lst *lb, t_info *info)
+static	int	algo_checker(t_info *info)
 {
 	char	*l;
 	int		ret;
@@ -66,29 +30,38 @@ static	int	algo_checker(t_lst *la, t_lst *lb, t_info *info)
 			exit(EXIT_FAILURE);
 		}
 		else
-		{
-			opperations_list(&la, &lb, l);
-			if (info->flag_v)
-			{
-				ft_dprintf(1, "\nl1 : ");
-				print_lst(la);
-				ft_dprintf(1, "\nl2 : \n\n");
-				print_lst(lb);
-			}
-		}
+			opperations_list(&(info->la), &(info->lb), l, info);
 		ft_strdel(&l);
 	}
-	if (!check_sort(la, lb))
+	if (!check_sort(info->la, info->lb))
 		ft_dprintf(1, "OK\n");
 	else
 		ft_dprintf(1, "KO\n");
 	return (1);
 }
 
+void	init_struct(t_info *info, int ac, char **av)
+{
+	info->mediane = 0;
+	info->flag_v = 0;
+	info->coup = 0;
+	if (!ft_strcmp(av[1], "-v"))
+		info->flag_v = 1;
+	info->la = create_lst(ac, av);
+	info->lb = NULL;
+	info->last = NULL;
+	info->op = NULL;
+	if (info->flag_v)
+	{
+		ft_dprintf(1, "l1 : ");
+		print_lst(info->la);
+		ft_dprintf(1, "\nl2 : \n\n");
+		print_lst(info->lb);
+	}
+}
+
 int			main(int ac, char **av)
 {
-	t_lst			*la;
-	t_lst			*lb;
 	t_info			info;
 
 	if (ac == 1)
@@ -96,19 +69,8 @@ int			main(int ac, char **av)
 		ft_dprintf(1, "./checker [-v] number 0 number 1 ... number n\n");
 		return (0);
 	}
-	info.flag_v = 0;
-	if (!ft_strcmp(av[1], "-v"))
-		info.flag_v = 1;
-	la = create_lst(ac, av);
-	lb = NULL;
-	if (info.flag_v)
-	{
-		ft_dprintf(1, "l1 : ");
-		print_lst(la);
-		ft_dprintf(1, "\nl2 : \n\n");
-		print_lst(lb);
-	}
-	if (!algo_checker(la, lb, &info))
+	init_struct(&info, ac, av);
+	if (!algo_checker(&info))
 		return (-1);
 	return (0);
 }
