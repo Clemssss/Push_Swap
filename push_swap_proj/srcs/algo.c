@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 22:10:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/12 18:52:17 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/12 20:26:26 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static	void	sort_3_2_nb_rev(t_lst **lb, t_info *info, int nb_elem)
 	}
 }
 
-static	void	push_in_b(t_info *info, int *count)
+static	void	push_in_b(t_info *info, int *count, int recup_end)
 {
 	int		rev;
 	int		i;
@@ -74,7 +74,7 @@ static	void	push_in_b(t_info *info, int *count)
 			opperations_list(&(info->la), &(info->lb), "ra", info);
 		}
 	}
-	while (info->la && rev < i)
+	while (info->la && rev < i && recup_end)
 	{
 		opperations_list(&(info->la), &(info->lb), "rra", info);
 		rev++;
@@ -147,12 +147,12 @@ int		rec_b(t_info *info, int size)
 	info->mediane = fill_mediane(cpy, size);
 	push_in_a(info, &count);
 	rec_b(info, size - count);
-	rec_a(info, count);
+	rec_a(info, count, 1);
 	recup_in_a(info, count);
 	return (0);
 }
 
-int		rec_a(t_info *info, int size)
+int		rec_a(t_info *info, int size, int recup_end)
 {
 	int		count;
 	t_lst	*cpy;
@@ -165,8 +165,8 @@ int		rec_a(t_info *info, int size)
 	}
 	cpy = cpy_lst(&(info->la));
 	info->mediane = fill_mediane(cpy, size);
-	push_in_b(info, &count);
-	rec_a(info, size - count);
+	push_in_b(info, &count, recup_end);
+	rec_a(info, size - count, recup_end);
 	rec_b(info, count);
 	recup_in_b(info, count);
 	return (0);
@@ -244,28 +244,11 @@ static	void	op_inutile(t_info *info)
 	}
 }
 
-/*static	void	op_inutile_plus(t_info *info)
-{
-	t_lst_op	*tmp;
-
-	tmp = info->op;
-	while (tmp)
-	{
-		while (tmp->next && ft_strcmp(tmp->opp, "rra") == 0
-				&& ft_strcmp(tmp->next->opp, "rra") == 0)
-			del_maillon(&tmp, 1);
-		while (tmp->next && ft_strcmp(tmp->opp, "rrb") == 0
-				&& ft_strcmp(tmp->next->opp, "rrb") == 0)
-			del_maillon(&tmp);
-		tmp = tmp->next;
-	}
-}*/
-
 int				algo_push_swap(t_info *info)
 {
-	rec_a(info, size_lst(info->la));
+	rec_a(info, size_lst(info->la), 0);
 	op_inutile(info);
-	//op_inutile_plus(info);
+	//op_fusion(info);
 	if (!info->flag_v)
 		print_op(info->op, 0);
 	//print_piles(info->la, info->lb);

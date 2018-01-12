@@ -6,7 +6,7 @@
 #    By: clegirar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/05 14:46:55 by clegirar          #+#    #+#              #
-#    Updated: 2018/01/12 14:29:38 by clegirar         ###   ########.fr        #
+#    Updated: 2018/01/12 20:26:20 by clegirar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CC	=	gcc
 
 CFLAGS	=	-Wall -Wextra -Werror -I ../includes
 
-LIB_PATH	=	-L ../libft/ -lft -g3 -fsanitize=address
+LIB_PATH	=	-L ../libft/ -lft
 
 RM	=	rm -rf
 
