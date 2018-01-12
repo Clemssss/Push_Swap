@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:48:00 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/11 23:51:32 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/12 18:02:57 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,19 @@ void	print_piles(t_lst *la, t_lst *lb)
 	ft_dprintf(1, "\n");
 }
 
-void	print_op(t_lst_op *op)
+void	print_op(t_lst_op *op, int c)
 {
 	t_lst_op	*tmp;
+	int			i;
 
 	tmp = op;
+	i = 0;
 	while (tmp)
 	{
-		ft_dprintf(1, "%s\n", tmp->opp);
+		if (c == 1)
+			ft_dprintf(1, "%d : %s\n", ++i, tmp->opp);
+		else if (c == 0)
+			ft_dprintf(1, "%s\n", tmp->opp);
 		tmp = tmp->next;
 	}
 }
@@ -146,33 +151,27 @@ t_lst	*n_elem(t_lst **op, int n)
 	return (tmp);
 }
 
-t_lst_op	*new_maillon_op(char *str)
-{
-	t_lst_op	*new;
-
-	new = NULL;
-	if (!(new = (t_lst_op *)ft_memalloc(sizeof(t_lst_op))))
-		return (NULL);
-	new->opp = ft_strdup(str);
-	new->next = NULL;
-	return (new);
-}
-
-void		maillon_op_back(t_lst_op **op, char *l)
+void	maillon_op_back(t_lst_op **op, t_lst_op **tail, char *l)
 {
 	t_lst_op	*tmp;
-	t_lst_op	*tmp2;
 
-	tmp = new_maillon_op(l);
-	if (*op)
+	tmp = NULL;
+	if (!(tmp = (t_lst_op*)ft_memalloc(sizeof(t_lst_op))))
+		return ;
+	tmp->opp = ft_strdup(l);
+	tmp->next = NULL;
+	if (!(*tail))
 	{
-		tmp2 = *op;
-		while (tmp2->next)
-			tmp2 = tmp2->next;
-		tmp2->next = tmp;
+		tmp->prev = NULL;
+		*op = tmp;
+		*tail = tmp;
 	}
 	else
-		*op = tmp;
+	{
+		(*tail)->next = tmp;
+		tmp->prev = *tail;
+		*tail = tmp;
+	}
 }
 
 t_lst	*new_maillon(long long nb)
@@ -187,40 +186,34 @@ t_lst	*new_maillon(long long nb)
 	return (new);
 }
 
-void		maillon_back(t_lst **op, long long nb)
+t_lst	*maillon_back(t_lst **tmp, long long nb)
 {
-	t_lst	*tmp;
 	t_lst	*tmp2;
 
-	tmp = new_maillon(nb);
-	if (*op)
-	{
-		tmp2 = *op;
-		while (tmp2->next)
-			tmp2 = tmp2->next;
-		tmp2->next = tmp;
-	}
-	else
-		*op = tmp;
+	tmp2 = new_maillon(nb);
+	if (*tmp)
+		(*tmp)->next = tmp2;
+	return (tmp2);
 }
 
 
 t_lst	*cpy_lst(t_lst **la)
 {
 	t_lst	*tmp;
-	t_lst	*new;
 	t_lst	*tmp2;
-	int		i;
+	t_lst	*new;
 
+	if (!(*la))
+		return (NULL);
 	tmp = *la;
-	i = 0;
+	new = NULL;
+	tmp2 = NULL;
 	while (tmp)
 	{
-		maillon_back(&tmp2, tmp->nb);
-		if (i == 0)
+		tmp2 = maillon_back(&tmp2, tmp->nb);
+		if (new == NULL)
 			new = tmp2;
 		tmp = tmp->next;
-		i++;
 	}
 	return (new);
 }

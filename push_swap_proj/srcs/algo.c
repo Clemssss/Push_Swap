@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 22:10:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/11 23:51:30 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/12 18:52:17 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 static	void	sort_3_2_nb(t_lst **la, t_info *info, int nb_elem)
 {
-	while (check_sort(*la, NULL, nb_elem))
+	while (*la && check_sort(*la, NULL, nb_elem))
 	{
-		ft_dprintf(1, "here sort_3_2_nb, size = %d, mediane = %d\n", nb_elem, info->mediane);
 		if (nb_elem == 2)
 			opperations_list(&(info->la), &(info->lb), "sa", info);
 		else if (nb_elem == 3)
 		{
 			if (((*la)->nb > (*la)->next->nb && (*la)->nb < (*la)->next->next->nb)
-					|| ((*la)->nb > (*la)->next->nb && (*la)->nb > (*la)->next->next->nb
-						&& (*la)->next->nb < (*la)->next->next->nb))
+					|| ((*la)->nb > (*la)->next->nb && (*la)->nb > (*la)->next->next->nb))
 				opperations_list(&(info->la), &(info->lb), "sa", info);
-			else if (((*la)->nb < (*la)->next->nb && (*la)->nb < (*la)->next->next->nb)
-					|| ((*la)->nb > (*la)->next->nb && (*la)->nb > (*la)->next->next->nb
-						&& (*la)->next->nb > (*la)->next->next->nb))
+			else
 			{
 				opperations_list(&(info->la), &(info->lb), "ra", info);
 				opperations_list(&(info->la), &(info->lb), "sa", info);
@@ -39,20 +35,16 @@ static	void	sort_3_2_nb(t_lst **la, t_info *info, int nb_elem)
 
 static	void	sort_3_2_nb_rev(t_lst **lb, t_info *info, int nb_elem)
 {
-	while (check_sort_rev(*lb, NULL, nb_elem))
+	while (*lb && check_sort_rev(*lb, NULL, nb_elem))
 	{
-		ft_dprintf(1, "here sort_3_2_nb_rev, size = %d, mediane = %d\n", nb_elem, info->mediane);
 		if (nb_elem == 2)
 			opperations_list(&(info->la), &(info->lb), "sb", info);
 		else if (nb_elem == 3)
 		{
 			if (((*lb)->nb < (*lb)->next->nb && (*lb)->nb > (*lb)->next->next->nb)
-					|| ((*lb)->nb < (*lb)->next->nb && (*lb)->nb < (*lb)->next->next->nb
-						&& (*lb)->next->nb < (*lb)->next->next->nb))
+					|| ((*lb)->nb < (*lb)->next->nb && (*lb)->nb < (*lb)->next->next->nb))
 				opperations_list(&(info->la), &(info->lb), "sb", info);
-			else if (((*lb)->nb > (*lb)->next->nb && (*lb)->nb > (*lb)->next->next->nb)
-					|| ((*lb)->nb < (*lb)->next->nb && (*lb)->nb < (*lb)->next->next->nb
-						&& (*lb)->next->nb < (*lb)->next->next->nb))
+			else
 			{
 				opperations_list(&(info->la), &(info->lb), "rb", info);
 				opperations_list(&(info->la), &(info->lb), "sb", info);
@@ -65,20 +57,24 @@ static	void	sort_3_2_nb_rev(t_lst **lb, t_info *info, int nb_elem)
 static	void	push_in_b(t_info *info, int *count)
 {
 	int		rev;
+	int		i;
 
 	rev = 0;
-	while (check_nb_exist(info->la, info->mediane))
+	i = 0;
+	while (info->la && check_nb_exist(info->la, info->mediane))
 	{
-		ft_dprintf(1, "here push_in_b, mediane = %d\n", info->mediane);
 		if (info->la->nb <= info->mediane)
-			opperations_list(&(info->la), &(info->lb), "pb", info);
-		else
 		{
 			*count += 1;
+			opperations_list(&(info->la), &(info->lb), "pb", info);
+		}
+		else
+		{
+			i++;
 			opperations_list(&(info->la), &(info->lb), "ra", info);
 		}
 	}
-	while (rev < *count)
+	while (info->la && rev < i)
 	{
 		opperations_list(&(info->la), &(info->lb), "rra", info);
 		rev++;
@@ -88,21 +84,24 @@ static	void	push_in_b(t_info *info, int *count)
 static	void	push_in_a(t_info *info, int *count)
 {
 	int		rev;
+	int		i;
 
 	rev = 0;
-	while (check_nb_exist_rev(info->lb, info->mediane))
+	i = 0;
+	while (info->lb && check_nb_exist_rev(info->lb, info->mediane))
 	{
-		ft_dprintf(1, "here push_in_a, mediane = %d\n", info->mediane);
-		if (info->lb->nb > info->mediane)
+		if (info->lb->nb >= info->mediane)
+		{
 			opperations_list(&(info->la), &(info->lb), "pa", info);
+			*count += 1;
+		}
 		else
 		{
-			*count += 1;
+			i++;
 			opperations_list(&(info->la), &(info->lb), "rb", info);
 		}
 	}
-	ft_dprintf(1, "pre rev %d\n", rev);
-	while (rev < *count)
+	while (info->lb && rev < i)
 	{
 		opperations_list(&(info->la), &(info->lb), "rrb", info);
 		rev++;
@@ -114,9 +113,8 @@ static	void	recup_in_b(t_info *info, int count)
 	int		i;
 
 	i = 0;
-	while (i < count)
+	while (info->lb && i < count)
 	{
-		ft_dprintf(1, "here recup_in_b, count = %d,mediane = %d\n", count, info->mediane);
 		opperations_list(&(info->la), &(info->lb), "pa", info);
 		i++;
 	}
@@ -127,9 +125,8 @@ static	void	recup_in_a(t_info *info, int count)
 	int		i;
 
 	i = 0;
-	while (i < count)
+	while (info->la && i < count)
 	{
-		ft_dprintf(1, "here recup_in_a, count = %d,mediane = %d\n", count, info->mediane);
 		opperations_list(&(info->la), &(info->lb), "pb", info);
 		i++;
 	}
@@ -147,15 +144,11 @@ int		rec_b(t_info *info, int size)
 		return (0);
 	}
 	cpy = cpy_lst(&(info->lb));
-	info->mediane = fill_mediane(info->lb, size);
-	ft_dprintf(1, "MEDIAAAAAAAAANE  = %d\n", info->mediane);
-	info->lb = cpy;
-	ft_dprintf(1, "here rec_b, size = %d, mediane = %d\n", size, info->mediane);
+	info->mediane = fill_mediane(cpy, size);
 	push_in_a(info, &count);
-	ft_dprintf(1, "post rev\n");
-	rec_b(info, size_lst(info->lb));
-	rec_a(info, size - count);
-	recup_in_a(info, size - count);
+	rec_b(info, size - count);
+	rec_a(info, count);
+	recup_in_a(info, count);
 	return (0);
 }
 
@@ -171,20 +164,110 @@ int		rec_a(t_info *info, int size)
 		return (0);
 	}
 	cpy = cpy_lst(&(info->la));
-	info->mediane = fill_mediane(info->la, size);
-	ft_dprintf(1, "MEDIAAAAAAAAANE  = %d\n", info->mediane);
-	info->la = cpy;
+	info->mediane = fill_mediane(cpy, size);
 	push_in_b(info, &count);
-	ft_dprintf(1, "here rec_a, size = %d, mediane = %d\n", size, info->mediane);
-	rec_a(info, size_lst(info->la));
-	rec_b(info, size - count);
-	recup_in_b(info, size - count);
+	rec_a(info, size - count);
+	rec_b(info, count);
+	recup_in_b(info, count);
 	return (0);
 }
+
+static	void	del_maillon(t_lst_op **tmp, int pos)
+{
+	t_lst_op	*after;
+	t_lst_op	*before;
+	t_lst_op	*stock;
+
+	after = NULL;
+	before = NULL;
+	stock = NULL;
+	if ((*tmp)->prev && (*tmp)->next->next)
+	{
+		after = (*tmp)->next->next;
+		before = (*tmp)->prev;
+		before->next = after;
+		after->prev = before;
+		if (pos == 0)
+			stock = before;
+		else if (pos == 1)
+			stock = after;
+	}
+	else if ((*tmp)->prev && !(*tmp)->next->next)
+	{
+		after = NULL;
+		before = (*tmp)->prev;
+		before->next = after;
+		after->prev = before;
+		stock = before;
+	}
+	else if (!(*tmp)->prev && (*tmp)->next->next)
+	{
+		after = (*tmp)->next->next;
+		before = NULL;
+		before->next = after;
+		after->prev = before;
+		stock = after;
+	}
+	ft_strdel(&(*tmp)->next->opp);
+	ft_strdel(&(*tmp)->opp);
+	free((*tmp)->next);
+	free((*tmp));
+	*tmp = NULL;
+	*tmp = stock;
+}
+
+static	int		check_del_maillon(t_lst_op **tmp, char *a, char *b)
+{
+	if ((ft_strcmp((*tmp)->opp, a) == 0 && ft_strcmp((*tmp)->next->opp, b) == 0)
+			|| (ft_strcmp((*tmp)->opp, b) == 0 && ft_strcmp((*tmp)->next->opp, a) == 0))
+	{
+		del_maillon(tmp, 0);
+		return (1);
+	}
+	return (0);
+}
+
+static	void	op_inutile(t_info *info)
+{
+	t_lst_op	*tmp;
+
+	tmp = info->op;
+	while (tmp)
+	{
+		if (tmp->next)
+		{
+			while (check_del_maillon(&tmp, "pa", "pb"));
+			while (check_del_maillon(&tmp, "rra", "ra"));
+			while (check_del_maillon(&tmp, "rrb", "rb"));
+		}
+		tmp = tmp->next;
+	}
+}
+
+/*static	void	op_inutile_plus(t_info *info)
+{
+	t_lst_op	*tmp;
+
+	tmp = info->op;
+	while (tmp)
+	{
+		while (tmp->next && ft_strcmp(tmp->opp, "rra") == 0
+				&& ft_strcmp(tmp->next->opp, "rra") == 0)
+			del_maillon(&tmp, 1);
+		while (tmp->next && ft_strcmp(tmp->opp, "rrb") == 0
+				&& ft_strcmp(tmp->next->opp, "rrb") == 0)
+			del_maillon(&tmp);
+		tmp = tmp->next;
+	}
+}*/
 
 int				algo_push_swap(t_info *info)
 {
 	rec_a(info, size_lst(info->la));
-	print_piles(info->la, info->lb);
+	op_inutile(info);
+	//op_inutile_plus(info);
+	if (!info->flag_v)
+		print_op(info->op, 0);
+	//print_piles(info->la, info->lb);
 	return (0);
 }

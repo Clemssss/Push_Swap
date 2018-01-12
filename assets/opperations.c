@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 16:14:13 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/11 23:51:32 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/12 16:04:38 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		opperations_list(t_lst **la, t_lst **lb, char *l, t_info *info)
 		op_rev_rotate(la, NULL);
 		op_rev_rotate(lb, NULL);
 	}
-	maillon_op_back(&(info->op), l);
+	maillon_op_back(&(info->op), &(info->tail), l);
 	info->coup += 1;
 	if (info->flag_v)
 	{

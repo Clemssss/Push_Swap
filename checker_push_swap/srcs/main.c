@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:52:05 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/11 19:41:28 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/12 12:03:35 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static	int	algo_checker(t_info *info)
 			opperations_list(&(info->la), &(info->lb), l, info);
 		ft_strdel(&l);
 	}
-	if (!check_sort(info->la, info->lb))
+	if (!check_sort(info->la, info->lb, size_lst(info->la)))
 		ft_dprintf(1, "OK\n");
 	else
 		ft_dprintf(1, "KO\n");

@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 22:01:43 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/11 20:27:34 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/12 12:04:15 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static	int		push_in_a(t_info *info)
 
 static	int		push_in_b(t_info *info)
 {
-	if (check_sort(info->la, NULL)
+	if (check_sort(info->la, NULL, size_lst(info->la))
 			&& info->la->nb < info->la->next->nb && info->la->nb < info->last->nb)
 	{
 		opperations_list(&(info->la), &(info->lb), "pb", info);
@@ -53,7 +53,7 @@ static	int		push_in_b(t_info *info)
 
 int				algo_inf_7(t_info *info)
 {
-	while (check_sort(info->la, info->lb))
+	while (check_sort(info->la, info->lb, size_lst(info->la)))
 	{
 		info->last = last_elem(info->la);
 		if (!push_in_a(info))

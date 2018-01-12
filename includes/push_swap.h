@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/11 23:51:36 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/12 18:03:06 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef	struct		s_lst
 typedef	struct		s_lst_op
 {
 	char			*opp;
+	struct s_lst_op	*prev;
 	struct s_lst_op	*next;
 }					t_lst_op;
 
@@ -39,6 +40,7 @@ typedef	struct		s_info
 	t_lst			*lb;
 	t_lst			*last;
 	t_lst_op		*op;
+	t_lst_op		*tail;
 	int				flag_v;
 	int				coup;
 	int				mediane;
@@ -50,8 +52,8 @@ int					rec_b(t_info *info, int count);
 int					fill_mediane(t_lst *la, int nb_elem);
 t_lst_op			*n_elem_op(t_lst_op **op, int n);
 t_lst				*n_elem(t_lst **op, int n);
-void				maillon_op_back(t_lst_op **lst, char *l);
-void				print_op(t_lst_op *op);
+void				maillon_op_back(t_lst_op **op, t_lst_op **tail, char *l);
+void				print_op(t_lst_op *op, int c);
 int					opperations_list(t_lst **la, t_lst **lb, char *l,
 		t_info *info);
 int					check_nb_exist(t_lst *l, int nb);
