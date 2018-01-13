@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/12 20:26:21 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/13 14:44:26 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,15 @@ typedef	struct		s_info
 t_lst				*cpy_lst(t_lst **la);
 int					rec_a(t_info *info, int count, int recup_end);
 int					rec_b(t_info *info, int count);
+void				op_inutile(t_info *info);
+void				push_in_b(t_info *info, int *count, int recup_end);
+void				push_in_a(t_info *info, int *count);
+void				recup_in_a(t_info *info, int count);
+void				recup_in_b(t_info *info, int count);
+void				sort_3_2_nb(t_lst **la, t_info *info, int nb_elem);
+void				sort_3_2_nb_rev(t_lst **la, t_info *info, int nb_elem);
 int					fill_mediane(t_lst *la, int nb_elem);
 t_lst_op			*n_elem_op(t_lst_op **op, int n);
-t_lst				*n_elem(t_lst **op, int n);
 void				maillon_op_back(t_lst_op **op, t_lst_op **tail, char *l);
 void				print_op(t_lst_op *op, int c);
 int					opperations_list(t_lst **la, t_lst **lb, char *l,

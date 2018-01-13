@@ -6,13 +6,13 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 22:01:43 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/12 12:04:15 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/13 14:00:19 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	int		push_in_a(t_info *info)
+static	int		push_in_a_inf7(t_info *info)
 {
 	if (info->la && info->la->next && info->la->nb > info->la->next->nb
 			&& info->la->nb > info->last->nb)
@@ -35,7 +35,7 @@ static	int		push_in_a(t_info *info)
 	return (0);
 }
 
-static	int		push_in_b(t_info *info)
+static	int		push_in_b_inf7(t_info *info)
 {
 	if (check_sort(info->la, NULL, size_lst(info->la))
 			&& info->la->nb < info->la->next->nb && info->la->nb < info->last->nb)
@@ -56,8 +56,8 @@ int				algo_inf_7(t_info *info)
 	while (check_sort(info->la, info->lb, size_lst(info->la)))
 	{
 		info->last = last_elem(info->la);
-		if (!push_in_a(info))
-			push_in_b(info);
+		if (!push_in_a_inf7(info))
+			push_in_b_inf7(info);
 	}
 	print_piles(info->la, info->lb);
 	return (1);

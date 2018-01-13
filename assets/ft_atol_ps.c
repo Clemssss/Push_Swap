@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 08:42:26 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/08 16:00:13 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/13 14:17:12 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 long	long	ft_atol_ps(const char *str)
 {
 	long	long	res;
-	int							i;
-	int							sign;
+	int				i;
+	int				sign;
 
 	res = 0;
 	i = 0;
