@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:33:51 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/13 14:19:56 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/14 18:13:40 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_lst			*create_lst(int ac, char **av)
 	long	long	nb;
 
 	i = 1;
-	if (!ft_strcmp(av[1], "-v"))
+	if (!ft_strcmp(av[1], "-v") || !ft_strcmp(av[1], "-n"))
 		i++;
 	nb = ft_atol_ps(av[i]);
 	if (nb > INT_MAX || nb < INT_MIN || !check_av(av[i++]))

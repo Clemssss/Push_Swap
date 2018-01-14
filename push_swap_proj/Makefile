@@ -6,7 +6,7 @@
 #    By: clegirar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/05 14:46:55 by clegirar          #+#    #+#              #
-#    Updated: 2018/01/14 16:15:12 by clegirar         ###   ########.fr        #
+#    Updated: 2018/01/14 18:16:02 by clegirar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,34 +19,42 @@ SRCS	=	./srcs/main.c				\
 			./srcs/recup_in_piles.c		\
 			./srcs/sort_3_2_nb.c		\
 			./srcs/opti_op.c			\
-			./srcs/opperations.c		\
-			./srcs/create_list.c		\
-			./srcs/mng_list.c		\
-			./srcs/ft_atol_ps.c		\
-			./srcs/check.c			\
-			./srcs/mng_list_op.c		\
-			./srcs/mediane.c			\
-			./srcs/print.c
+			./srcs/bonus_mlx.c			\
+			../assets/opperations.c		\
+			../assets/create_list.c		\
+			../assets/mng_list.c		\
+			../assets/ft_atol_ps.c		\
+			../assets/check.c			\
+			../assets/mng_list_op.c		\
+			../assets/mediane.c			\
+			../assets/print.c
 
 OBJS	=	$(SRCS:.c=.o)
 
 CC	=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -I ../includes -g3
+CFLAGS	=	-Wall -Wextra -Werror -I../libft/ -I../includes -I./minilibx_macos -I./lib_mlx/includes
 
-LIB_PATH	=	-L ../libft/ -lft
+LIB_PATH	=	./lib_mlx/ft_libmlx.a -L ../libft/ -lft -lmlx -framework OpenGL -framework AppKit -framework Opencl -lm
 
 RM	=	rm -rf
 
 all	:	$(NAME)
 
 $(NAME)	:	$(OBJS)
-	$(CC) $(OBJS) -o $(NAME) $(CFLAGS) $(LIB_PATH)
+	make -C lib_mlx
+	make -C minilibx_macos
+	$(CC) $(OBJS) $(LIB_PATH) -o $(NAME)
 
 clean	:
+	make clean -C lib_mlx
+	make clean -C minilibx_macos
 	$(RM) $(OBJS)
 
-fclean	:	clean
+fclean	:
+	make fclean -C lib_mlx
+	make clean -C minilibx_macos
+	$(RM) $(OBJS)
 	$(RM) $(NAME)
 
 re	:	fclean all

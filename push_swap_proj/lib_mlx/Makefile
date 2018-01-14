@@ -3,32 +3,42 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: clegirar <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: clegirar <clegirar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/01/05 14:21:04 by clegirar          #+#    #+#              #
-#    Updated: 2018/01/14 16:46:55 by clegirar         ###   ########.fr        #
+#    Created: 2017/11/30 11:30:22 by clegirar          #+#    #+#              #
+#    Updated: 2017/12/06 18:46:17 by clegirar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	compile
+NAME	=	ft_libmlx.a
 
-all		:	$(NAME)
+SRCS	=	./srcs/clear_pixels.c			\
+				./srcs/draw_pixel.c				\
+				./srcs/draw_line.c				\
+				./srcs/convert_hsv_rgb.c
 
-$(NAME)	:
-	make -C libft
-	make -C checker_push_swap
-	make -C push_swap_proj
+OBJS	=	$(SRCS:.c=.o)
+
+CC		=	gcc
+
+CFLAGS	=	-Wall -Wextra -Werror -I./includes/
+
+all			:	$(NAME)
+
+$(NAME)	:	$(OBJS)
+					ar rc $(NAME) $(OBJS)
+					ranlib $(NAME)
+
+%.o		: 	%.c
+					$(CC) -o $@ -c $< $(CFLAGS)
 
 clean	:
-	make clean -C libft
-	make clean -C checker_push_swap
-	make clean -C push_swap_proj
+				rm -rf $(OBJS)
 
 fclean	:
-	make fclean -C libft
-	make fclean -C checker_push_swap
-	make fclean -C push_swap_proj
+					rm -rf $(OBJS)
+					rm -rf $(NAME)
 
-re		:	fclean all
+re			:	fclean all
 
 .PHONY	:	all clean fclean re
