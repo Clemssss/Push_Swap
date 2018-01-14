@@ -1,51 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mng_list_op.c                                      :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/13 14:05:42 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/14 15:10:11 by clegirar         ###   ########.fr       */
+/*   Created: 2018/01/13 14:10:12 by clegirar          #+#    #+#             */
+/*   Updated: 2018/01/14 15:44:01 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_lst_op	*n_elem_op(t_lst_op **op, int n)
+void	print_op(t_lst_op *op, int c)
 {
-	int			i;
 	t_lst_op	*tmp;
+	int			i;
 
+	tmp = op;
 	i = 0;
-	tmp = *op;
-	while (i < n)
+	while (tmp)
 	{
+		if (c == 1)
+			ft_dprintf(1, "%d : %s\n", ++i, tmp->opp);
+		else if (c == 0)
+			ft_dprintf(1, "%s\n", tmp->opp);
 		tmp = tmp->next;
-		i++;
 	}
-	return (tmp);
 }
 
-void		maillon_op_back(t_lst_op **op, t_lst_op **tail, char *l)
+void	print_lst(t_lst *la)
 {
-	t_lst_op	*tmp;
+	t_lst	*tmp;
 
-	tmp = NULL;
-	if (!(tmp = (t_lst_op*)ft_memalloc(sizeof(t_lst_op))))
-		return ;
-	tmp->opp = ft_strdup(l);
-	tmp->next = NULL;
-	if (!(*tail))
+	tmp = la;
+	while (tmp)
 	{
-		tmp->prev = NULL;
-		*op = tmp;
-		*tail = tmp;
+		ft_dprintf(1, "%lld ", tmp->nb);
+		tmp = tmp->next;
 	}
-	else
-	{
-		(*tail)->next = tmp;
-		tmp->prev = *tail;
-		*tail = tmp;
-	}
+}
+
+void	print_piles(t_lst *la, t_lst *lb)
+{
+	ft_dprintf(1, "\nl1 : ");
+	print_lst(la);
+	ft_dprintf(1, "\nl2 : ");
+	print_lst(lb);
+	ft_dprintf(1, "\n");
 }

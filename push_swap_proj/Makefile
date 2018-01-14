@@ -6,7 +6,7 @@
 #    By: clegirar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/05 14:46:55 by clegirar          #+#    #+#              #
-#    Updated: 2018/01/13 14:14:42 by clegirar         ###   ########.fr        #
+#    Updated: 2018/01/14 16:15:12 by clegirar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,20 +19,20 @@ SRCS	=	./srcs/main.c				\
 			./srcs/recup_in_piles.c		\
 			./srcs/sort_3_2_nb.c		\
 			./srcs/opti_op.c			\
-			../assets/opperations.c		\
-			../assets/create_list.c		\
-			../assets/mng_list.c		\
-			../assets/ft_atol_ps.c		\
-			../assets/check.c			\
-			../assets/mng_list_op.c		\
-			../assets/mediane.c			\
-			../assets/print.c
+			./srcs/opperations.c		\
+			./srcs/create_list.c		\
+			./srcs/mng_list.c		\
+			./srcs/ft_atol_ps.c		\
+			./srcs/check.c			\
+			./srcs/mng_list_op.c		\
+			./srcs/mediane.c			\
+			./srcs/print.c
 
 OBJS	=	$(SRCS:.c=.o)
 
 CC	=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -I ../includes
+CFLAGS	=	-Wall -Wextra -Werror -I ../includes -g3
 
 LIB_PATH	=	-L ../libft/ -lft
 

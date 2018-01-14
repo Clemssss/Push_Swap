@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 22:10:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/13 14:05:34 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/14 16:14:45 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		rec_b(t_info *info, int size)
 	}
 	cpy = cpy_lst(&(info->lb));
 	info->mediane = fill_mediane(cpy, size);
+	remove_lst(&cpy);
 	push_in_a(info, &count);
 	rec_b(info, size - count);
 	rec_a(info, count, 1);
@@ -45,6 +46,7 @@ int		rec_a(t_info *info, int size, int recup_end)
 	}
 	cpy = cpy_lst(&(info->la));
 	info->mediane = fill_mediane(cpy, size);
+	remove_lst(&cpy);
 	push_in_b(info, &count, recup_end);
 	rec_a(info, size - count, recup_end);
 	rec_b(info, count);
@@ -57,8 +59,8 @@ int				algo_push_swap(t_info *info)
 	rec_a(info, size_lst(info->la), 0);
 	op_inutile(info);
 	//op_fusion(info);
-	if (!info->flag_v)
-		print_op(info->op, 0);
+	/*if (!info->flag_v)
+		print_op(info->op, 0);*/
 	//print_piles(info->la, info->lb);
 	return (0);
 }

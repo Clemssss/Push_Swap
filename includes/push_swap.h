@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/13 14:44:26 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/14 16:14:46 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef	struct		s_info
 	int				mediane;
 }					t_info;
 
+void				remove_lst(t_lst **la);
+void				remove_lst_op(t_lst_op **la);
 t_lst				*cpy_lst(t_lst **la);
 int					rec_a(t_info *info, int count, int recup_end);
 int					rec_b(t_info *info, int count);
