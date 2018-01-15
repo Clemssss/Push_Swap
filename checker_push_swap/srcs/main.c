@@ -6,17 +6,18 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:52:05 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/12 12:03:35 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:40:16 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	int	algo_checker(t_info *info)
+static	int		algo_checker(t_info *info)
 {
 	char	*l;
 	int		ret;
 
+	l = NULL;
 	while ((ret = get_next_line(0, &l)))
 	{
 		if (ft_strcmp(l, "sa") && ft_strcmp(l, "sb") && ft_strcmp(l, "ss")
@@ -27,6 +28,8 @@ static	int	algo_checker(t_info *info)
 		{
 			ft_dprintf(2, "Error\n");
 			ft_strdel(&l);
+			remove_lst(&info->la);
+			remove_lst(&info->lb);
 			exit(EXIT_FAILURE);
 		}
 		else
@@ -40,16 +43,17 @@ static	int	algo_checker(t_info *info)
 	return (1);
 }
 
-void	init_struct(t_info *info, int ac, char **av)
+static	void	init_struct_checker(t_info *info, char **av)
 {
 	info->mediane = 0;
 	info->flag_v = 0;
 	info->coup = 0;
-	if (!ft_strcmp(av[1], "-v"))
+	if (!ft_strcmp(av[0], "-v"))
 		info->flag_v = 1;
-	info->la = create_lst(ac, av);
+	info->la = create_lst(av);
 	info->lb = NULL;
 	info->last = NULL;
+	info->tail = NULL;
 	info->op = NULL;
 	if (info->flag_v)
 	{
@@ -60,16 +64,21 @@ void	init_struct(t_info *info, int ac, char **av)
 	}
 }
 
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	t_info			info;
 
+	info.tab = NULL;
 	if (ac == 1)
 	{
 		ft_dprintf(1, "./checker [-v] number 0 number 1 ... number n\n");
 		return (0);
 	}
-	init_struct(&info, ac, av);
+	if (check_string_av(av[1]))
+		info.tab = ft_strsplit(av[1], ' ');
+	else
+		info.tab = ft_tabcpy(av, 1);
+	init_struct_checker(&info, info.tab);
 	if (!algo_checker(&info))
 		return (-1);
 	return (0);

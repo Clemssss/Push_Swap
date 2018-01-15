@@ -6,7 +6,7 @@
 #    By: clegirar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/05 14:46:55 by clegirar          #+#    #+#              #
-#    Updated: 2018/01/14 18:16:02 by clegirar         ###   ########.fr        #
+#    Updated: 2018/01/15 17:34:06 by clegirar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS	=	./srcs/main.c				\
 			./srcs/sort_3_2_nb.c		\
 			./srcs/opti_op.c			\
 			./srcs/bonus_mlx.c			\
+			./srcs/do_change.c			\
 			../assets/opperations.c		\
 			../assets/create_list.c		\
 			../assets/mng_list.c		\

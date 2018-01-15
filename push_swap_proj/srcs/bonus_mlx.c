@@ -6,16 +6,14 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 17:14:09 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/14 18:15:26 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:20:27 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "mlx.h"
 
-//	KEYCODE SPACE = 49
-
-int		fct_key(int keycode, t_info *info)
+int			fct_key(int keycode, t_info *info)
 {
 	if (keycode == 53)
 	{
@@ -26,19 +24,32 @@ int		fct_key(int keycode, t_info *info)
 		free(info->pict);
 		exit(EXIT_SUCCESS);
 	}
+	if (keycode == 49)
+		info->space = 1;
 	return (1);
 }
 
-int		do_change(t_info *info)
+static	int	init_mlx(t_info *info, char **av)
 {
-	(void)info;
-	return (1);
-}
-
-int		bonus_mlx(t_info *info)
-{
+	remove_lst(&info->la);
+	info->la = NULL;
+	info->la = create_lst(av);
+	remove_lst(&info->lb);
+	info->lb = NULL;
+	info->tmp = info->op;
+	info->init_height = size_lst(info->la);
+	info->init_width = higher_elem(info->la);
 	if ((!(info->win = (t_window *)ft_memalloc(sizeof(t_window))))
 			|| (!(info->pict = (t_pict *)ft_memalloc(sizeof(t_pict))))
+			|| (!(info->iso = (t_pos_iso *)ft_memalloc(sizeof(t_pos_iso))))
+			|| (!(info->hsv = (t_hsv *)ft_memalloc(sizeof(t_hsv)))))
+		return (0);
+	return (1);
+}
+
+int			bonus_mlx(t_info *info, char **av)
+{
+	if ((!(init_mlx(info, av)))
 			|| (!(info->win->mlx = mlx_init())))
 		return (0);
 	info->win->width = WIDTH;

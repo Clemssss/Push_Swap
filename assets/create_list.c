@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:33:51 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/14 18:13:40 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:40:45 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static	int		check_av(char *str)
 	return (1);
 }
 
-t_lst			*create_lst(int ac, char **av)
+t_lst			*create_lst(char **av)
 {
 	t_lst			*la;
 	t_lst			*tmp;
@@ -50,8 +50,8 @@ t_lst			*create_lst(int ac, char **av)
 	int				i;
 	long	long	nb;
 
-	i = 1;
-	if (!ft_strcmp(av[1], "-v") || !ft_strcmp(av[1], "-n"))
+	i = 0;
+	if (!ft_strcmp(av[i], "-v") || !ft_strcmp(av[i], "-n"))
 		i++;
 	nb = ft_atol_ps(av[i]);
 	if (nb > INT_MAX || nb < INT_MIN || !check_av(av[i++]))
@@ -62,13 +62,14 @@ t_lst			*create_lst(int ac, char **av)
 	tmp = new_maillon(nb);
 	la = tmp;
 	tmp2 = tmp;
-	while (i < ac)
+	while (av[i])
 	{
 		nb = ft_atol_ps(av[i]);
 		if (nb > INT_MAX || nb < INT_MIN
 				|| !check_nb_lst(la, nb) || !check_av(av[i]))
 		{
 			ft_dprintf(2, "Error\n");
+			remove_lst(&la);
 			exit(EXIT_FAILURE);
 		}
 		else

@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/14 18:15:32 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:40:45 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,30 @@ typedef	struct		s_info
 {
 	t_pict			*pict;
 	t_window		*win;
+	t_pos_iso		*iso;
+	t_hsv			*hsv;
 	t_lst			*la;
 	t_lst			*lb;
 	t_lst			*last;
-	t_lst			*cpy;
+	t_lst_op		*tmp;
 	t_lst_op		*op;
 	t_lst_op		*tail;
+	char			**tab;
 	int				flag_v;
 	int				flag_n;
 	int				coup;
 	int				mediane;
+	int				space;
+	int				init_width;
+	int				init_height;
 }					t_info;
 
-int					bonus_mlx(t_info *info);
+int					check_string_av(char *av);
+int					do_change(t_info *info);
+int					neme_elem(t_lst *la, int nb);
+int					higher_elem(t_lst *la);
+int					call_op(t_lst **la, t_lst **lb, char *l);
+int					bonus_mlx(t_info *info, char **av);
 void				free_struct(t_info *info);
 void				remove_lst(t_lst **la);
 void				remove_lst_op(t_lst_op **la);
@@ -65,7 +76,7 @@ void				recup_in_a(t_info *info, int count);
 void				recup_in_b(t_info *info, int count);
 void				sort_3_2_nb(t_lst **la, t_info *info, int nb_elem);
 void				sort_3_2_nb_rev(t_lst **la, t_info *info, int nb_elem);
-int					fill_mediane(t_lst *la, int nb_elem);
+int					fill_mediane(t_lst *la, int nb_elem, int c, int nb);
 t_lst_op			*n_elem_op(t_lst_op **op, int n);
 void				maillon_op_back(t_lst_op **op, t_lst_op **tail, char *l);
 void				print_op(t_lst_op *op, int c);
@@ -79,7 +90,7 @@ int					op_push(t_lst **la, t_lst **lb);
 int					op_rotate(t_lst **la, t_lst **lb);
 int					op_rev_rotate(t_lst **la, t_lst **lb);
 long	long		ft_atol_ps(const char *str);
-t_lst				*create_lst(int ac, char **av);
+t_lst				*create_lst(char **av);
 t_lst				*new_maillon(long long nb);
 t_lst_op			*new_maillon_op(char *str);
 t_lst				*last_elem(t_lst *la);

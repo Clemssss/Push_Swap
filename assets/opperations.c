@@ -6,13 +6,13 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 16:14:13 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/13 14:00:54 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:40:15 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int		opperations_list(t_lst **la, t_lst **lb, char *l, t_info *info)
+int		call_op(t_lst **la, t_lst **lb, char *l)
 {
 	if (!ft_strcmp(l, "sa"))
 		op_swap(la, NULL);
@@ -45,6 +45,12 @@ int		opperations_list(t_lst **la, t_lst **lb, char *l, t_info *info)
 		op_rev_rotate(la, NULL);
 		op_rev_rotate(lb, NULL);
 	}
+	return (1);
+}
+
+int		opperations_list(t_lst **la, t_lst **lb, char *l, t_info *info)
+{
+	call_op(la, lb, l);
 	maillon_op_back(&(info->op), &(info->tail), l);
 	info->coup += 1;
 	if (info->flag_v)

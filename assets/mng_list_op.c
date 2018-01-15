@@ -6,23 +6,11 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 14:05:42 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/14 16:51:03 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:37:05 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void		remove_lst(t_lst **la)
-{
-	if (!(*la))
-		return ;
-	while (*la)
-	{
-		free(*la);
-		(*la) = (*la)->next;
-	}
-	la = NULL;
-}
 
 void		remove_lst_op(t_lst_op **la)
 {

@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:48:00 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/14 15:10:11 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:37:03 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,34 @@ int		size_lst(t_lst *la)
 	return (i);
 }
 
+int		higher_elem(t_lst *la)
+{
+	int		stock;
+	t_lst	*tmp;
+
+	tmp = la;
+	stock = tmp->nb;
+	while (tmp)
+	{
+		if (tmp->nb > stock)
+			stock = tmp->nb;
+		tmp = tmp->next;
+	}
+	return (stock);
+}
+
+void		remove_lst(t_lst **la)
+{
+	if (!(*la))
+		return ;
+	while (*la)
+	{
+		free(*la);
+		(*la) = (*la)->next;
+	}
+	la = NULL;
+}
+
 t_lst	*new_maillon(long long nb)
 {
 	t_lst	*new;
@@ -38,37 +66,6 @@ t_lst	*new_maillon(long long nb)
 		return (NULL);
 	new->nb = nb;
 	new->next = NULL;
-	return (new);
-}
-
-t_lst	*maillon_back(t_lst **tmp, long long nb)
-{
-	t_lst	*tmp2;
-
-	tmp2 = new_maillon(nb);
-	if (*tmp)
-		(*tmp)->next = tmp2;
-	return (tmp2);
-}
-
-t_lst	*cpy_lst(t_lst **la)
-{
-	t_lst	*tmp;
-	t_lst	*tmp2;
-	t_lst	*new;
-
-	if (!(*la))
-		return (NULL);
-	tmp = *la;
-	new = NULL;
-	tmp2 = NULL;
-	while (tmp)
-	{
-		tmp2 = maillon_back(&tmp2, tmp->nb);
-		if (new == NULL)
-			new = tmp2;
-		tmp = tmp->next;
-	}
 	return (new);
 }
 

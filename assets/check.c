@@ -6,11 +6,25 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 14:02:49 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/13 14:16:47 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:23:53 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int		check_string_av(char *av)
+{
+	int		i;
+
+	i = 0;
+	while (av[i])
+	{
+		if (av[i] == ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int		check_nb_exist(t_lst *l, int nb)
 {

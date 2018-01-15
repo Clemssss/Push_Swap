@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 22:01:43 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/13 14:00:19 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:09:20 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int				algo_inf_7(t_info *info)
 		if (!push_in_a_inf7(info))
 			push_in_b_inf7(info);
 	}
-	print_piles(info->la, info->lb);
+	if (!info->flag_v && !info->flag_n)
+		print_op(info->op, 0);
 	return (1);
 }
