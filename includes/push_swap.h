@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 23:10:02 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/16 23:33:41 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void				recup_in_a(t_info *info, int count);
 void				recup_in_b(t_info *info, int count);
 void				sort_3_2_nb(t_lst **la, t_info *info, int nb_elem);
 void				sort_3_2_nb_rev(t_lst **la, t_info *info, int nb_elem);
-int					fill_mediane(t_lst *la, int nb_elem, int c, int nb);
+int					fill_mediane(t_lst *la, int nb_elem);
 t_lst_op			*n_elem_op(t_lst_op **op, int n);
 void				maillon_op_back(t_lst_op **op, t_lst_op **tail, char *l);
 void				print_op(t_lst_op *op, int c);

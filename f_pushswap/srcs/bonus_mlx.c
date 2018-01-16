@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 17:14:09 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 17:06:07 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/16 23:29:25 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static	int	init_mlx(t_info *info, char **av)
 	remove_lst(&info->lb);
 	info->lb = NULL;
 	info->tmp = info->op;
+	info->ordre = create_lst(av);
+	info->ordre = sort_lst(info->ordre);
 	info->init_height = size_lst(info->la);
 	info->init_width = higher_elem(info->la);
 	if ((!(info->win = (t_window *)ft_memalloc(sizeof(t_window))))

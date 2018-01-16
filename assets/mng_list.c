@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:48:00 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 23:09:45 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/16 23:34:53 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,19 @@ t_lst	*sort_lst(t_lst *lst)
 	}
 	lst = tmp;
 	return (lst);
+}
+
+int		neme_elem(t_lst *lst, int nb)
+{
+	int		i;
+	t_lst	*tmp;
+
+	tmp = lst;
+	i = 0;
+	while (tmp && tmp->nb != nb)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
 }
