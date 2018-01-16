@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 16:14:13 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 16:15:53 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/16 22:46:35 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,6 @@ int		opperations_list(t_lst **la, t_lst **lb, char *l, t_info *info)
 {
 	call_op(la, lb, l);
 	maillon_op_back(&(info->op), &(info->tail), l);
-	info->coup += 1;
-	if (info->flag_v)
-	{
-		ft_dprintf(1, "%s\n", n_elem_op(&(info->op), info->coup - 1)->opp);
-		ft_dprintf(1, "\nl1 : ");
-		print_lst(*la);
-		ft_dprintf(1, "\nl2 : ");
-		print_lst(*lb);
-		ft_dprintf(1, "\nCOUP = %d\n\n", info->coup);
-	}
 	return (1);
 }
 

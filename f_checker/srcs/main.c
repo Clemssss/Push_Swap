@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:52:05 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 16:17:32 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/16 22:46:35 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,17 @@ static	int		algo_checker(t_info *info)
 			exit(EXIT_FAILURE);
 		}
 		else
-			opperations_list(&(info->la), &(info->lb), l, info);
+		{
+			call_op(&info->la, &info->lb, l);
+			if (info->flag_v)
+			{
+				ft_dprintf(1, "la : ");
+				print_lst(info->la);
+				ft_dprintf(1, "\nlb : ");
+				print_lst(info->lb);
+				ft_dprintf(1, "\n\n");
+			}
+		}
 		ft_strdel(&l);
 	}
 	if (!check_sort(info->la, info->lb, size_lst(info->la)))
@@ -55,13 +65,6 @@ static	void	init_struct_checker(t_info *info, char **av)
 	info->last = NULL;
 	info->tail = NULL;
 	info->op = NULL;
-	if (info->flag_v)
-	{
-		ft_dprintf(1, "l1 : ");
-		print_lst(info->la);
-		ft_dprintf(1, "\nl2 : \n\n");
-		print_lst(info->lb);
-	}
 }
 
 int				main(int ac, char **av)

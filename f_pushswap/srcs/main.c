@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:53:19 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/15 18:33:31 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/16 22:46:36 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@ static	void	init_struct(t_info *info, char **av)
 	info->tmp = NULL; 
 	info->op = NULL;
 	info->tail = NULL;
-	if (info->flag_v)
-	{
-		ft_dprintf(1, "l1 : ");
-		print_lst(info->la);
-		ft_dprintf(1, "\nl2 : \n\n");
-		print_lst(info->lb);
-	}
 }
 
 void			free_struct(t_info *info)
@@ -48,6 +41,26 @@ void			free_struct(t_info *info)
 	remove_lst(&info->la);
 	remove_lst_op(&info->op);
 	info->last = NULL;
+}
+
+static	void	print_flag_v(t_info *info)
+{
+	remove_lst(&info->la);
+	info->la = NULL;
+	info->la = create_lst(info->tab);
+	remove_lst(&info->lb);
+	info->lb = NULL;
+	info->tmp = info->op;
+	while (info->tmp)
+	{
+		call_op(&info->la, &info->lb, info->tmp->opp);
+		ft_dprintf(1, "%s\nla : ", info->tmp->opp);
+		print_lst(info->la);
+		ft_dprintf(1, "\nlb : ");
+		print_lst(info->lb);
+		ft_dprintf(1, "\n\n");
+		info->tmp = info->tmp->next;
+	}
 }
 
 int				main(int ac, char **av)
@@ -69,7 +82,9 @@ int				main(int ac, char **av)
 		algo_inf_7(&info);
 	else
 		algo_push_swap(&info);
-	if (info.flag_n)
+	if (info.flag_v)
+		print_flag_v(&info);
+	else if (info.flag_n)
 		bonus_mlx(&info, info.tab);
 	free_struct(&info);
 	return (0);
