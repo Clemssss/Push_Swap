@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 22:46:36 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/16 23:10:02 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef	struct		s_info
 	t_lst			*la;
 	t_lst			*lb;
 	t_lst			*last;
+	t_lst			*ordre;
 	t_lst_op		*tmp;
 	t_lst_op		*op;
 	t_lst_op		*tail;
@@ -57,6 +58,7 @@ typedef	struct		s_info
 	int				init_height;
 }					t_info;
 
+t_lst				*sort_lst(t_lst *lst);
 void				free_struct_visu(t_info *info);
 int					visu(t_info *info);
 int					check_string_av(char *av);

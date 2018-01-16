@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 14:06:56 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/15 17:05:03 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/16 23:09:49 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				fill_mediane(t_lst *la, int size, int c, int nb)
 
 	i = 0;
 	tmp = la;
-	while (i < size)
+	while (i < size && tmp)
 	{
 		tab[i] = tmp->nb;
 		i++;

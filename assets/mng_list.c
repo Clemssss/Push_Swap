@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:48:00 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 20:40:58 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/16 23:09:45 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,26 @@ t_lst	*last_elem(t_lst *la)
 	while (tmp->next)
 		tmp = tmp->next;
 	return (tmp);
+}
+
+t_lst	*sort_lst(t_lst *lst)
+{
+	int		overflow;
+	t_lst	*tmp;
+
+	tmp = lst;
+	while (lst->next)
+	{
+		if (lst->nb > lst->next->nb)
+		{
+			overflow = lst->nb;
+			lst->nb = lst->next->nb;
+			lst->next->nb = overflow;
+			lst = tmp;
+		}
+		else
+			lst = lst->next;
+	}
+	lst = tmp;
+	return (lst);
 }

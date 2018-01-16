@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 17:21:40 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 17:03:19 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/16 23:10:00 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	void	print_line_la(t_info *info, int nb, int i)
 	{
 		info->iso->xmin = 0;
 		info->iso->ymin = j;
-		info->iso->xmax = fill_mediane(info->la, size_lst(info->la), 1, nb)
+		info->iso->xmax = fill_mediane(info->ordre, size_lst(info->ordre), 1, nb)
 			* ((WIDTH / 2) / info->init_height);
 		info->iso->ymax = j;
 		draw_line(info->pict, info->iso);
@@ -39,7 +39,7 @@ static	void	print_line_lb(t_info *info, int nb, int i)
 	{
 		info->iso->xmin = WIDTH / 2;
 		info->iso->ymin = j;
-		info->iso->xmax = fill_mediane(info->lb, size_lst(info->lb), 1, nb)
+		info->iso->xmax = fill_mediane(info->ordre, size_lst(info->ordre), 1, nb)
 			* ((WIDTH / 2) / info->init_height) + WIDTH / 2;
 		info->iso->ymax = j;
 		draw_line(info->pict, info->iso);

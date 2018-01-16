@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 16:17:22 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 17:06:44 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/16 23:10:01 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int				fct_key(int keycode, t_info *info)
 		exit(EXIT_SUCCESS);
 	}
 	if (keycode == 49)
-		info->space = 1;
+		info->space = (info->space) == 0 ? 1 : 0;
 	return (1);
 }
 
@@ -37,6 +37,8 @@ static	int		init_mlx(t_info *info)
 	remove_lst(&info->lb);
 	info->lb = NULL;
 	info->tmp = info->op;
+	info->ordre = create_lst(info->tab);
+	info->ordre = sort_lst(info->ordre);
 	info->init_height = size_lst(info->la);
 	info->init_width = higher_elem(info->la);
 	if ((!(info->win = (t_window *)ft_memalloc(sizeof(t_window))))
