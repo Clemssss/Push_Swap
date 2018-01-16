@@ -6,7 +6,7 @@
 #    By: clegirar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/05 14:21:04 by clegirar          #+#    #+#              #
-#    Updated: 2018/01/15 18:40:46 by clegirar         ###   ########.fr        #
+#    Updated: 2018/01/16 16:28:56 by clegirar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,18 +16,21 @@ all		:	$(NAME)
 
 $(NAME)	:
 	make -C libft
-	make -C checker_push_swap
-	make -C push_swap_proj
+	make -C f_checker
+	make -C f_pushswap
+	make -C f_visu
 
 clean	:
 	make clean -C libft
-	make clean -C checker_push_swap
-	make clean -C push_swap_proj
+	make clean -C f_checker
+	make clean -C f_pushswap
+	make clean -C f_visu
 
 fclean	:
 	make fclean -C libft
-	make fclean -C checker_push_swap
-	make fclean -C push_swap_proj
+	make fclean -C f_checker
+	make fclean -C f_pushswap
+	make fclean -C f_visu
 
 re		:	fclean all
 

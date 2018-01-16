@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/15 18:40:45 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/16 16:38:10 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
-# include "../push_swap_proj/lib_mlx/includes/libmlx.h"
+# include "../lib_mlx/includes/libmlx.h"
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
 # include <stdlib.h>
@@ -57,6 +57,8 @@ typedef	struct		s_info
 	int				init_height;
 }					t_info;
 
+void				free_struct_visu(t_info *info);
+int					visu(t_info *info);
 int					check_string_av(char *av);
 int					do_change(t_info *info);
 int					neme_elem(t_lst *la, int nb);

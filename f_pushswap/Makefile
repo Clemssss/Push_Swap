@@ -6,7 +6,7 @@
 #    By: clegirar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/05 14:46:55 by clegirar          #+#    #+#              #
-#    Updated: 2018/01/15 17:34:06 by clegirar         ###   ########.fr        #
+#    Updated: 2018/01/16 16:28:35 by clegirar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,25 +36,25 @@ CC	=	gcc
 
 CFLAGS	=	-Wall -Wextra -Werror -I../libft/ -I../includes -I./minilibx_macos -I./lib_mlx/includes
 
-LIB_PATH	=	./lib_mlx/ft_libmlx.a -L ../libft/ -lft -lmlx -framework OpenGL -framework AppKit -framework Opencl -lm
+LIB_PATH	=	../lib_mlx/ft_libmlx.a -L ../libft/ -lft -lmlx -framework OpenGL -framework AppKit -framework Opencl -lm
 
 RM	=	rm -rf
 
 all	:	$(NAME)
 
 $(NAME)	:	$(OBJS)
-	make -C lib_mlx
-	make -C minilibx_macos
+	make -C ../lib_mlx
+	make -C ../minilibx_macos
 	$(CC) $(OBJS) $(LIB_PATH) -o $(NAME)
 
 clean	:
-	make clean -C lib_mlx
-	make clean -C minilibx_macos
+	make clean -C ../lib_mlx
+	make clean -C ../minilibx_macos
 	$(RM) $(OBJS)
 
 fclean	:
-	make fclean -C lib_mlx
-	make clean -C minilibx_macos
+	make fclean -C ../lib_mlx
+	make clean -C ../minilibx_macos
 	$(RM) $(OBJS)
 	$(RM) $(NAME)
 
