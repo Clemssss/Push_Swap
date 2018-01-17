@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/17 14:48:36 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:18:23 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef	struct		s_info
 	int				init_width;
 	int				init_height;
 	int				key[269];
+	float			pas_h;
 }					t_info;
 
 t_lst				*sort_lst(t_lst *lst);

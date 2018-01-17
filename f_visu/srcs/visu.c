@@ -6,15 +6,12 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 16:17:22 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/17 13:16:48 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:18:22 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "mlx.h"
-
-//	123 == fleche gauche
-//	124 == fleche droite
 
 int				fct_key(int keycode, t_info *info)
 {

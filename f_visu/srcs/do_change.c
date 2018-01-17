@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 17:21:40 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/17 13:54:12 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:18:21 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static	void	print_line_la(t_info *info, int nb, int i)
 		info->iso->xmax = neme_elem(info->ordre, nb)
 			* ((WIDTH / 2) / info->init_height);
 		info->iso->ymax = j;
+		conv_hsv_rgb(info->pict,
+				(float)neme_elem(info->ordre, nb) * info->pas_h, 1, 1);
 		draw_line(info->pict, info->iso);
 		j++;
 	}
@@ -42,6 +44,8 @@ static	void	print_line_lb(t_info *info, int nb, int i)
 		info->iso->xmax = neme_elem(info->ordre, nb)
 			* ((WIDTH / 2) / info->init_height) + WIDTH / 2;
 		info->iso->ymax = j;
+		conv_hsv_rgb(info->pict,
+				(float)neme_elem(info->ordre, nb) * info->pas_h, 1, 1);
 		draw_line(info->pict, info->iso);
 		j++;
 	}
@@ -64,7 +68,6 @@ static	void	make(t_info *info)
 	int		i;
 
 	line_mid(info);
-	conv_hsv_rgb(info->pict, 60, 1, 1);
 	tmp_la = info->la;
 	tmp_lb = info->lb;
 	i = HEIGHT;

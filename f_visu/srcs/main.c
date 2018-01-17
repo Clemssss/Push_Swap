@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 16:07:05 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 23:09:54 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:18:22 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static	int		fill_op(t_info *info)
 static	void	init_struct_visu(t_info *info, char **av)
 {
 	info->la = create_lst(av);
+	info->pas_h = 360 / (float)size_lst(info->la);
 	info->lb = NULL;
 	info->tail = NULL;
 	info->op = NULL;
