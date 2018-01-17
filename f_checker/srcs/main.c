@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:52:05 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/17 15:51:01 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 16:01:54 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static	int		algo_checker(t_info *info)
 			}
 			else if (info->flag_c)
 			{
-				ft_dprintf(1, "\033[0mla : \033[36m");
+				ft_dprintf(1, "\033[0;1mla : \033[36;1m");
 				print_lst(info->la);
-				ft_dprintf(1, "\033[0m\nlb : \033[31m");
+				ft_dprintf(1, "\033[0;1m\nlb : \033[31;1m");
 				print_lst(info->lb);
-				ft_dprintf(1, "\033[0m\n\n");
+				ft_dprintf(1, "\033[0;1m\n\n");
 			}
 		}
 		ft_strdel(&l);
