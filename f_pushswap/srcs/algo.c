@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 22:10:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/17 15:10:36 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:36:40 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int				algo_push_swap(t_info *info)
 	rec_a(info, size_lst(info->la), 0);
 	op_inutile(info);
 	//op_fusion(info);
-	if (!info->flag_v && !info->flag_n)
+	if (!info->flag_v && !info->flag_c)
 		print_op(info->op, 0);
 	return (0);
 }

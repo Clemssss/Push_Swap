@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/17 15:18:23 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:32:07 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef	struct		s_info
 	t_lst_op		*tail;
 	char			**tab;
 	int				flag_v;
-	int				flag_n;
+	int				flag_c;
 	int				coup;
 	int				mediane;
 	int				space;
@@ -68,7 +68,6 @@ int					do_change(t_info *info);
 int					neme_elem(t_lst *la, int nb);
 int					higher_elem(t_lst *la);
 int					call_op(t_lst **la, t_lst **lb, char *l);
-int					bonus_mlx(t_info *info, char **av);
 void				free_struct(t_info *info);
 void				remove_lst(t_lst **la);
 void				remove_lst_op(t_lst_op **la);

@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:48:00 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 23:34:53 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:33:55 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		remove_lst(t_lst **la)
 		free(*la);
 		(*la) = (*la)->next;
 	}
-	la = NULL;
+	*la = NULL;
 }
 
 t_lst	*new_maillon(long long nb)

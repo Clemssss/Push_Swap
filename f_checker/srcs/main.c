@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:52:05 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 22:46:35 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:51:01 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ static	int		algo_checker(t_info *info)
 				print_lst(info->lb);
 				ft_dprintf(1, "\n\n");
 			}
+			else if (info->flag_c)
+			{
+				ft_dprintf(1, "\033[0mla : \033[36m");
+				print_lst(info->la);
+				ft_dprintf(1, "\033[0m\nlb : \033[31m");
+				print_lst(info->lb);
+				ft_dprintf(1, "\033[0m\n\n");
+			}
 		}
 		ft_strdel(&l);
 	}
@@ -60,6 +68,8 @@ static	void	init_struct_checker(t_info *info, char **av)
 	info->coup = 0;
 	if (!ft_strcmp(av[0], "-v"))
 		info->flag_v = 1;
+	if (!ft_strcmp(av[0], "-c"))
+		info->flag_c = 1;
 	info->la = create_lst(av);
 	info->lb = NULL;
 	info->last = NULL;
