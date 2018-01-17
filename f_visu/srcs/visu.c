@@ -6,12 +6,15 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 16:17:22 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 23:10:01 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 13:16:48 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "mlx.h"
+
+//	123 == fleche gauche
+//	124 == fleche droite
 
 int				fct_key(int keycode, t_info *info)
 {
@@ -24,13 +27,23 @@ int				fct_key(int keycode, t_info *info)
 		free(info->pict);
 		exit(EXIT_SUCCESS);
 	}
-	if (keycode == 49)
+	else if (keycode == 49)
 		info->space = (info->space) == 0 ? 1 : 0;
+	else if (keycode)
+		info->key[keycode] = 1;
+	return (1);
+}
+
+int				key_off(int keycode, t_info *info)
+{
+	if (keycode && keycode != 49)
+		info->key[keycode] = 0;
 	return (1);
 }
 
 static	int		init_mlx(t_info *info)
 {
+	ft_bzero(info->key, 269);
 	remove_lst(&info->la);
 	info->la = NULL;
 	info->la = create_lst(info->tab);
@@ -68,6 +81,7 @@ int				visu(t_info *info)
 		return (0);
 	mlx_hook(info->win->window, 2, 0, &fct_key, info);
 	mlx_loop_hook(info->win->mlx, &do_change, info);
+	mlx_key_hook(info->win->window, &key_off, info);
 	mlx_loop(info->win->mlx);
 	return (1);
 }

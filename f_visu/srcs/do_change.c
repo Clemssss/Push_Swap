@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 17:21:40 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 23:32:48 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 13:54:12 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,36 @@ static	void	make(t_info *info)
 	}
 }
 
+static	char	*rev_op(char *opp)
+{
+	if (!ft_strcmp(opp, "pa"))
+		return ("pb");
+	else if (!ft_strcmp(opp, "pb"))
+		return ("pa");
+	else if (!ft_strcmp(opp, "ra"))
+		return ("rra");
+	else if (!ft_strcmp(opp, "rb"))
+		return ("rrb");
+	else if (!ft_strcmp(opp, "rra"))
+		return ("ra");
+	else if (!ft_strcmp(opp, "rrb"))
+		return ("rb");
+	return (opp);
+}
+
 int				do_change(t_info *info)
 {
 	if (info->tmp && info->space)
+	{
+		call_op(&info->la, &info->lb, info->tmp->opp);
+		info->tmp = info->tmp->next;
+	}
+	else if (info->key[123] && info->tmp && info->tmp->prev)
+	{
+		info->tmp = info->tmp->prev;
+		call_op(&info->la, &info->lb, rev_op(info->tmp->opp));
+	}
+	else if (info->key[124] && info->tmp && info->tmp->next)
 	{
 		call_op(&info->la, &info->lb, info->tmp->opp);
 		info->tmp = info->tmp->next;
