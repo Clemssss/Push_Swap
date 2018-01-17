@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/17 13:16:50 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 14:48:36 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ void				remove_lst(t_lst **la);
 void				remove_lst_op(t_lst_op **la);
 t_lst				*cpy_lst(t_lst **la);
 int					rec_a(t_info *info, int count, int recup_end);
-int					rec_b(t_info *info, int count);
+int					rec_b(t_info *info, int count, int recup_b);
 void				op_inutile(t_info *info);
 void				push_in_b(t_info *info, int *count, int recup_end);
-void				push_in_a(t_info *info, int *count);
+void				push_in_a(t_info *info, int *count, int recup_b);
 void				recup_in_a(t_info *info, int count);
 void				recup_in_b(t_info *info, int count);
 void				sort_3_2_nb(t_lst **la, t_info *info, int nb_elem);

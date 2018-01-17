@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 13:49:52 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 23:34:52 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/17 14:48:32 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	push_in_b(t_info *info, int *count, int recup_end)
 	}
 }
 
-void	push_in_a(t_info *info, int *count)
+void	push_in_a(t_info *info, int *count, int recup_b)
 {
 	int		rev;
 	int		i;
@@ -59,7 +59,7 @@ void	push_in_a(t_info *info, int *count)
 			opperations_list(&(info->la), &(info->lb), "rb", info);
 		}
 	}
-	while (info->lb && rev < i)
+	while (info->lb && rev < i && recup_b)
 	{
 		opperations_list(&(info->la), &(info->lb), "rrb", info);
 		rev++;
