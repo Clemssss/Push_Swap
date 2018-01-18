@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 17:21:40 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/17 15:18:21 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/18 14:14:01 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,12 @@ static	char	*rev_op(char *opp)
 		return ("ra");
 	else if (!ft_strcmp(opp, "rrb"))
 		return ("rb");
+	else if (!ft_strcmp(opp, "rr"))
+		return ("rrr");
+	else if (!ft_strcmp(opp, "rrr"))
+		return ("rr");
+	else if (!ft_strcmp(opp, "ss"))
+		return ("ss");
 	return (opp);
 }
 
