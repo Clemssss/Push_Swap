@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.h                                         :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/19 17:55:16 by clegirar         ###   ########.fr       */
+/*   Created: 2018/01/19 19:03:22 by clegirar          #+#    #+#             */
+/*   Updated: 2018/01/19 19:03:30 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
@@ -63,6 +63,9 @@ typedef	struct		s_info
 	int				count_b;
 }					t_info;
 
+void				print_line_lb(t_info *info, int nb, int i);
+void				print_line_la(t_info *info, int nb, int i);
+void				line_mid(t_info *info);
 void				sort_and_recup(t_lst **la, t_info *info, int size);
 void				sort_rev_and_recup(t_lst **la, t_info *info, int size);
 t_lst				*sort_lst(t_lst *lst);
@@ -77,8 +80,8 @@ void				free_struct(t_info *info);
 void				remove_lst(t_lst **la);
 void				remove_lst_op(t_lst_op **la);
 t_lst				*cpy_lst(t_lst **la);
-int					rec_a(t_info *info, int count, int recup_end);
-int					rec_b(t_info *info, int count, int recup_b);
+int					rec_a(t_info *info, int size, int recup_end, int count);
+int					rec_b(t_info *info, int size, int recup_b, int count);
 void				op_inutile(t_info *info);
 void				push_in_b(t_info *info, int *count, int recup_end);
 void				push_in_a(t_info *info, int *count, int recup_b);
@@ -94,7 +97,6 @@ int					opperations_list(t_lst **la, t_lst **lb, char *l,
 		t_info *info);
 int					check_nb_exist(t_lst *l, int nb);
 int					check_nb_exist_rev(t_lst *l, int nb);
-int					better_push(t_lst *la, t_lst *lb);
 int					op_swap(t_lst **la, t_lst **lb);
 int					op_push(t_lst **la, t_lst **lb);
 int					op_rotate(t_lst **la, t_lst **lb);

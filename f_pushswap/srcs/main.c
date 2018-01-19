@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:53:19 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/19 17:05:17 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/19 18:21:37 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static	void	init_struct(t_info *info, char **av)
 		info->flag_v = 1;
 	info->la = create_lst(av);
 	info->lb = NULL;
-	info->tmp = NULL; 
+	info->tmp = NULL;
 	info->op = NULL;
 	info->tail = NULL;
 }

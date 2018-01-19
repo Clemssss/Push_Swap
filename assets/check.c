@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 14:02:49 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/19 15:13:24 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/19 17:58:27 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,6 @@ int		check_nb_exist_rev(t_lst *l, int nb)
 		tmp = tmp->next;
 	}
 	return (0);
-}
-
-int		better_push(t_lst *a_pile, t_lst *b_pile)
-{
-	t_lst	*tmp;
-
-	if (a_pile->next)
-		tmp = a_pile->next;
-	if (a_pile && a_pile->nb == b_pile->nb + 1)
-		return (1);
-	while (tmp)
-	{
-		if (tmp->nb < a_pile->nb && tmp->nb > b_pile->nb)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
 }
 
 int		check_sort(t_lst *la, t_lst *lb, int nb_elem)

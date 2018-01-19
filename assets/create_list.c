@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:33:51 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/19 17:05:28 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/19 18:03:10 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,37 @@ static	int		check_av(char *str)
 	return (1);
 }
 
+static	void	add_maillon(t_lst **la, char **av, int i, long long nb)
+{
+	t_lst			*tmp;
+	t_lst			*tmp2;
+
+	tmp = new_maillon(nb);
+	*la = tmp;
+	tmp2 = tmp;
+	while (av[i])
+	{
+		nb = ft_atol_ps(av[i]);
+		if (nb > INT_MAX || nb < INT_MIN
+				|| !check_nb_lst(*la, nb) || !check_av(av[i]))
+		{
+			ft_dprintf(2, "Error\n");
+			remove_lst(la);
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			tmp = new_maillon(nb);
+			tmp2->next = tmp;
+			tmp2 = tmp;
+		}
+		i++;
+	}
+}
+
 t_lst			*create_lst(char **av)
 {
 	t_lst			*la;
-	t_lst			*tmp;
-	t_lst			*tmp2;
 	int				i;
 	long	long	nb;
 
@@ -59,26 +85,6 @@ t_lst			*create_lst(char **av)
 		ft_dprintf(2, "Error\n");
 		exit(EXIT_FAILURE);
 	}
-	tmp = new_maillon(nb);
-	la = tmp;
-	tmp2 = tmp;
-	while (av[i])
-	{
-		nb = ft_atol_ps(av[i]);
-		if (nb > INT_MAX || nb < INT_MIN
-				|| !check_nb_lst(la, nb) || !check_av(av[i]))
-		{
-			ft_dprintf(2, "Error\n");
-			remove_lst(&la);
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			tmp = new_maillon(nb);
-			tmp2->next = tmp;
-			tmp2 = tmp;
-		}
-		i++;
-	}
+	add_maillon(&la, av, i, nb);
 	return (la);
 }

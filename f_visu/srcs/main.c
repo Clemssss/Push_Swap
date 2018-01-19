@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 16:07:05 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/19 17:55:15 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/19 18:56:32 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void			free_struct_visu(t_info *info)
 	remove_lst_op(&info->op);
 	info->last = NULL;
 }
-
 
 static	int		fill_op(t_info *info)
 {

@@ -6,11 +6,32 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:52:05 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/19 17:03:05 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/19 18:19:49 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static	void	call_and_print(t_info *info, char *l)
+{
+	call_op(&info->la, &info->lb, l);
+	if (info->flag_v)
+	{
+		ft_dprintf(1, "la : ");
+		print_lst(info->la);
+		ft_dprintf(1, "\nlb : ");
+		print_lst(info->lb);
+		ft_dprintf(1, "\n\n");
+	}
+	else if (info->flag_c)
+	{
+		ft_dprintf(1, "\033[0;1mla : \033[36;1m");
+		print_lst(info->la);
+		ft_dprintf(1, "\033[0;1m\nlb : \033[31;1m");
+		print_lst(info->lb);
+		ft_dprintf(1, "\033[0;1m\n\n");
+	}
+}
 
 static	int		algo_checker(t_info *info)
 {
@@ -33,31 +54,9 @@ static	int		algo_checker(t_info *info)
 			exit(EXIT_FAILURE);
 		}
 		else
-		{
-			call_op(&info->la, &info->lb, l);
-			if (info->flag_v)
-			{
-				ft_dprintf(1, "la : ");
-				print_lst(info->la);
-				ft_dprintf(1, "\nlb : ");
-				print_lst(info->lb);
-				ft_dprintf(1, "\n\n");
-			}
-			else if (info->flag_c)
-			{
-				ft_dprintf(1, "\033[0;1mla : \033[36;1m");
-				print_lst(info->la);
-				ft_dprintf(1, "\033[0;1m\nlb : \033[31;1m");
-				print_lst(info->lb);
-				ft_dprintf(1, "\033[0;1m\n\n");
-			}
-		}
+			call_and_print(info, l);
 		ft_strdel(&l);
 	}
-	if (!check_sort(info->la, info->lb, size_lst(info->la)))
-		ft_dprintf(1, "OK\n");
-	else
-		ft_dprintf(1, "KO\n");
 	return (1);
 }
 
@@ -95,5 +94,9 @@ int				main(int ac, char **av)
 	init_struct_checker(&info, info.tab);
 	if (!algo_checker(&info))
 		return (-1);
+	if (!check_sort(info.la, info.lb, size_lst(info.la)))
+		ft_dprintf(1, "OK\n");
+	else
+		ft_dprintf(1, "KO\n");
 	return (0);
 }

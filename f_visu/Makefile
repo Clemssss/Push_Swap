@@ -6,7 +6,7 @@
 #    By: clegirar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/05 14:46:55 by clegirar          #+#    #+#              #
-#    Updated: 2018/01/16 16:38:38 by clegirar         ###   ########.fr        #
+#    Updated: 2018/01/19 19:01:11 by clegirar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,13 @@ NAME	=	../visu
 SRCS	=	./srcs/main.c						\
 			./srcs/visu.c						\
 			./srcs/do_change.c					\
+			./srcs/print_visu.c					\
 			../assets/ft_atol_ps.c				\
 			../assets/create_list.c				\
 			../assets/opperations.c				\
+			../assets/call_op.c					\
 			../assets/mng_list.c				\
+			../assets/mng_list2.c				\
 			../assets/mediane.c					\
 			../assets/mng_list_op.c				\
 			../assets/check.c					\
