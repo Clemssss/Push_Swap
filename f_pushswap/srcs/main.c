@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:53:19 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/19 17:02:56 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/19 17:05:17 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static	void	init_struct(t_info *info, char **av)
 	info->coup = 0;
 	if (!ft_strcmp(av[0], "-v"))
 		info->flag_v = 1;
-	else if (!ft_strcmp(av[0], "-c"))
-		info->flag_c = 1;
 	info->la = create_lst(av);
 	info->lb = NULL;
 	info->tmp = NULL; 
@@ -52,14 +50,6 @@ static	void	print_flag(t_info *info)
 	{
 		call_op(&info->la, &info->lb, info->tmp->opp);
 		if (info->flag_v)
-		{
-			ft_dprintf(1, "%s\nla : ", info->tmp->opp);
-			print_lst(info->la);
-			ft_dprintf(1, "\nlb : ");
-			print_lst(info->lb);
-			ft_dprintf(1, "\n\n");
-		}
-		else if (info->flag_c)
 		{
 			ft_dprintf(1, "\033[0;1m%s\nla : \033[36;1m", info->tmp->opp);
 			print_lst(info->la);
