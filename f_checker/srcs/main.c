@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:52:05 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/17 16:01:54 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/19 17:03:05 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static	void	init_struct_checker(t_info *info, char **av)
 	info->last = NULL;
 	info->tail = NULL;
 	info->op = NULL;
+	ft_tabdel(info->tab);
 }
 
 int				main(int ac, char **av)

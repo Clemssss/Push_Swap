@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 16:14:13 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/16 22:46:35 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/19 16:47:01 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	op_swap(t_lst **la, t_lst **lb)
 	long	long	stock;
 
 	(void)lb;
-	if (*la)
+	if (*la && (*la)->next)
 	{
 		stock = (*la)->next->nb;
 		(*la)->next->nb = (*la)->nb;

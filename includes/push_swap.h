@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:36:08 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/17 15:32:07 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/19 16:42:23 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,13 @@ typedef	struct		s_info
 	int				init_height;
 	int				key[269];
 	float			pas_h;
+	int				come;
+	int				count_a;
+	int				count_b;
 }					t_info;
 
+void				sort_and_recup(t_lst **la, t_info *info, int size);
+void				sort_rev_and_recup(t_lst **la, t_info *info, int size);
 t_lst				*sort_lst(t_lst *lst);
 void				free_struct_visu(t_info *info);
 int					visu(t_info *info);

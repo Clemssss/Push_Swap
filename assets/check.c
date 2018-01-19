@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 14:02:49 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/17 15:08:58 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/19 15:13:24 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		check_nb_exist_rev(t_lst *l, int nb)
 	tmp = l;
 	while (tmp)
 	{
-		if (tmp->nb > nb)
+		if (tmp->nb >= nb)
 			return (1);
 		tmp = tmp->next;
 	}

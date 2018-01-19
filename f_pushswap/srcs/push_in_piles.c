@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 13:49:52 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/17 17:15:48 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/19 16:42:31 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	push_in_b(t_info *info, int *count, int recup_end)
 	{
 		if (info->la->nb <= info->mediane)
 		{
-			*count += 1;
 			opperations_list(&(info->la), &(info->lb), "pb", info);
+			*count += 1;
 		}
 		else
 		{

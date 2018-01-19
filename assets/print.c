@@ -6,7 +6,7 @@
 /*   By: clegirar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 14:10:12 by clegirar          #+#    #+#             */
-/*   Updated: 2018/01/13 14:11:37 by clegirar         ###   ########.fr       */
+/*   Updated: 2018/01/19 14:28:49 by clegirar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void	print_piles(t_lst *la, t_lst *lb)
 	print_lst(la);
 	ft_dprintf(1, "\nl2 : ");
 	print_lst(lb);
-	ft_dprintf(1, "\n");
+	ft_dprintf(1, "\n\n");
 }
